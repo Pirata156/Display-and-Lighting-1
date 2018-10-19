@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<materialLib name="ExtendedBasicLibrary">
+
+	<shaders> 									<!-- Setting more then one shader material information -->
+		<shader name="fixedColor"
+			vs="shaders/fixedColor.vert"
+			ps="shaders/fixedColor.frag" />
+		<shader name="singleColor"
+			vs="shaders/singleColor.vert"
+			ps="shaders/singleColor.frag" />
+	</shaders>
+
+	<materials>
+		<material name="fixedColor">
+			<shader name="fixedColor">
+				<values>
+					<valueof uniform="m_pvm"
+							 type="RENDERER" context="CURRENT"
+							 component="PROJECTION_VIEW_MODEL" />
+				</values>
+			</shader>
+		</material>
+		<material name="singleColor"> 			<!-- The second shader that we will actually use this time as starter -->
+			<color>
+				<AMBIENT r="0.8" g="0.8" b="0.8" a="1.0" />
+				<DIFFUSE r="0.8" g="0.2" b="0.2" a="1.0" /> 	<!-- The color we are passing to the shader -->
+				<SPECULAR r="0.0" g="0.0" b="0.0" a="1.0" />
+				<EMISSION r="0.0" g="0.0" b="0.0" a="1.0" />
+				<SHININESS value="0.0" />
+			</color>
+			<shader name="singleColor">
+				<values>
+					<valueof uniform="m_pvm"
+							 type="RENDERER" context="CURRENT"
+							 component="PROJECTION_VIEW_MODEL" />
+					<valueof uniform="diffuse"
+							 type="COLOR" context="CURRENT"
+							 component="DIFFUSE" />
+				</values>
+			</shader>
+		</material>
+	</materials>
+</materialLib>
