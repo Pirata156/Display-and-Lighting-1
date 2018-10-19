@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<materialLib name="BasicLibrary"> 					<!-- The name of the library. How needs to be called in the project pass -->
+
+	<shaders> 									<!-- Name of the shader and where the shader file pieces are -->
+		<shader name="fixedColor"
+			vs="shaders/fixedColor.vert"
+			ps="shaders/fixedColor.frag" /> 	<!-- 'vs' for vertex shader and 'ps' for fragment shader -->
+	</shaders>
+
+	<materials> 								<!-- The materials list itself from pre-defined shaders and with variables to send into shaders -->
+		<material name="fixedColor">
+			<shader name="fixedColor">
+				<values>
+					<valueof uniform="m_pvm"
+							 type="RENDERER" context="CURRENT"
+							 component="PROJECTION_VIEW_MODEL" />
+				</values>
+			</shader>
+		</material>
+	</materials>
+</materialLib>
