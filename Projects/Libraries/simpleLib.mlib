@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<materialLib name="SimpleLibrary">
+
+	<shaders>
+		<shader name="singleColor"
+			vs="shaders/singleColor.vert"
+			ps="shaders/singleColor.frag" />
+	</shaders>
+
+	<materials>
+		<material name="singleColor">
+			<!-- Not setting color as before, since it reads it from the material itself - injectionMaps ?Not sure? -->
+			<shader name="singleColor">
+				<values>
+					<valueof uniform="m_pvm"
+							 type="RENDERER" context="CURRENT"
+							 component="PROJECTION_VIEW_MODEL" />
+					<valueof uniform="diffuse"
+							type="COLOR" context="CURRENT"
+							component="DIFFUSE" />
+				</values>
+			</shader>
+		</material>
+	</materials>
+</materialLib>
