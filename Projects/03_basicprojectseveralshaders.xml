@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<project name="BasicProjectWithSeveralShaders" width="1024" height="768">
+	<assets>
+		<scenes>
+			<scene name="Bench" param="UNITIZE">
+				<file name="./Models/rainbowBench.obj"/>
+			</scene>
+		</scenes>
+		
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+		
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<POSITION x="-0.8143" y="1.066161" z="1.525997" />
+				<VIEW x="0.300459" y="-0.560906" z="-0.771433" />
+				<UP x="0" y="1" z="0" />
+			</camera>
+		</cameras>
+		
+		<lights>
+			<light name="Sun">
+				<DIRECTION x="2" y="-1" z="-2" />
+			</light>
+		</lights>
+
+		<materialLibs> 								
+			<materialLib filename="./Libraries/extendedBasicLib.mlib" />
+		</materialLibs>
+	</assets>
+	
+	
+
+	<pipelines>
+		<pipeline name="usingCustomShaders" >
+			<pass class="default" name="pass1">
+				<scenes>
+					<scene name="Bench" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<!-- MaterialMaps replaces the materialof the object itself. InjectionMaps adds to the material. ?Not sure? -->
+				<materialMaps>
+					<map fromMaterial="*"
+						toLibrary="ExtendedBasicLibrary"
+						toMaterial="singleColor" />
+				</materialMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
