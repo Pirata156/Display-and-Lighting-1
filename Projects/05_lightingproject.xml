@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<project name="LightingProject" width="1024" height="768">
+	<assets>
+		<scenes>
+			<scene name="Bench" param="UNITIZE">
+				<file name="./Models/rainbowBench.obj"/>
+			</scene>
+		</scenes>
+
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<POSITION x="-0.8143" y="1.066161" z="1.525997" />
+				<VIEW x="0.300459" y="-0.560906" z="-0.771433" />
+				<NEAR value="1.0" />
+				<FAR value="1000.0" />
+				<UP x="0" y="1" z="0" />
+			</camera>
+		</cameras>
+
+		<lights>
+			<light name="Sun">
+				<DIRECTION x="2" y="-1" z="-2" />
+			</light>
+		</lights>
+
+		<materialLibs>
+			<materialLib filename="./Libraries/simpleLightLib.mlib" />
+		</materialLibs>
+	</assets>
+
+	<pipelines>
+		<pipeline name="usingCustomShaders" >
+			<pass class="default" name="pass1">
+				<scenes>
+					<scene name="Bench" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*" >
+						<shader 
+							fromMaterial ="diffAmbPerVertex" 
+							fromLibrary="SimpleLighting" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
