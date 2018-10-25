@@ -3,8 +3,8 @@
 
 	<shaders>
 		<shader name="diffAmbPerVertex" 	
-			vs = "shaders/diffAmbPerVertex.vert" 
-			ps = "shaders/diffAmbPerVertex.frag" />
+			vs="shaders/diffAmbPerVertex.vert" 
+			ps="shaders/diffAmbPerVertex.frag" />
 	</shaders>
 
 	<materials>
