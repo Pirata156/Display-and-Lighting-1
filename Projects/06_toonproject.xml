@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<project name="Toon Project" width="1024" height="768">
+	<assets>
+		<scenes>
+			<!-- Simple scene of a geometrical shape inbuilt -->
+			<scene name="Simple Sphere" param="UNITIZE">
+				<geometry name="sphere"
+					type="SPHERE"
+					SLICES=10 STACKS=10
+					material="sphere" /> 		<!-- Naming the material as "sphere" instead of leaving as default _LightGrey from NAU3D, just for map -->
+			</scene>
+		</scenes>
+
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<TYPE value="PERSPECTIVE" /> 		<!-- Default type of camera. Other option is ORTHO -->
+				<POSITION x="0.0" y="0.0" z="3.0" />
+				<VIEW x="0.0" y="0.0" z="-1.0" />
+				<NEAR value="1.0" />
+				<FAR value="1000.0" />
+			</camera>
+		</cameras>
+
+		<lights>
+			<light name="Sun" >
+				<DIRECTION x="-2.0" y="-1.0" z="-2.0" />
+			</light>
+		</lights>
+
+		<materialLibs>
+			<materialLib filename="./Libraries/toonLib.mlib" />
+		</materialLibs>
+
+	</assets>
+
+	<pipelines>
+		<pipeline name="usingToonShaders" default="true" > 		<!-- default="true" sets a pipeline as the default one -->
+			<pass class="default" name="pass1" >
+				<scenes>
+					<scene name="Simple Sphere" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*" >
+						<shader 
+							fromMaterial ="toonPerVertex" 
+							fromLibrary="ToonLibrary" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
