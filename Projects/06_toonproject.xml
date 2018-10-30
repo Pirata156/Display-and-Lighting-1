@@ -53,7 +53,7 @@
 				<injectionMaps>
 					<map toMaterial="*" >
 						<shader 
-							fromMaterial ="toonPerVertex" 
+							fromMaterial ="toonMixed_v1" 
 							fromLibrary="ToonLibrary" />
 					</map>
 				</injectionMaps>

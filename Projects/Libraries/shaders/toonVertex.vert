@@ -23,7 +23,7 @@ out Data {
 } DataOut;
 
 void main() {
-	// transform normal to camera space and normalize it
+	// transform and normalise both vectors
 	vec3 nn = normalize(m_normal * normal);				// local space to camera space
 	vec3 ldn = normalize(vec3(m_view * -light_dir));	// global space to camera space
 
