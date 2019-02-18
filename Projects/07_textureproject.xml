@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<project name="Light Project - Diffuse Ambience Specular" width="1024" height="768">
+	<assets>
+		<scenes>
+			<!-- Adding different elements on a single scene -->
+			<!-- SWAP_YZ used since we are loading a .3ds model file -->
+			<scene name="Teapot Up Left" param="UNITIZE SWAP_YZ">
+				<TRANSLATE x="-1.0" y="0.0" z="-1.0" />
+				<file name="Models/teapot.3ds"/>
+			</scene>
+			<scene name="Teapot Up Right" param="UNITIZE SWAP_YZ">
+				<TRANSLATE x="1.0" y="0.0" z="-1.0" />
+				<file name="Models/teapot.3ds"/>
+			</scene>
+			<scene name="Teapot Down Left" param="UNITIZE SWAP_YZ">
+				<TRANSLATE x="-1.0" y="0.0" z="1.0" />
+				<file name="Models/teapot.3ds"/>
+			</scene>
+			<scene name="Teapot Down Right" param="UNITIZE SWAP_YZ">
+				<TRANSLATE x="1.0" y="0.0" z="1.0" />
+				<file name="Models/teapot.3ds"/>
+			</scene>
+		</scenes>
+
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<TYPE value="PERSPECTIVE" /> 		<!-- Default type of camera. Other option is ORTHO -->
+				<POSITION x="-0.13" y="2.65" z="4.83" w="1" />
+				<VIEW x="0.06" y="-0.51" z="-0.85" w="0" />
+				<NEAR value="0.001" />
+				<FAR value="10.0" />
+				<FOV value="60.0" />
+			</camera>
+		</cameras>
+
+		<lights>
+			<light name="Sun" >
+				<DIRECTION x="-2.0" y="-1.0" z="-2.0" />
+			</light>
+		</lights>
+
+		<materialLibs>
+			<materialLib filename="./Libraries/lightingLib.mlib" />
+		</materialLibs>
+
+	</assets>
+
+	<pipelines>
+		<pipeline name="usingLightingShaders" default="true" > 		<!-- default="true" sets a pipeline as the default one -->
+			<pass class="default" name="pass1" >
+				<scenes>
+					<scene name="Teapot Up Left" />
+					<scene name="Teapot Up Right" />
+					<scene name="Teapot Down Left" />
+					<scene name="Teapot Down Right" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*" >
+						<shader 
+							fromMaterial ="directionalDiffAmbSpecPerPixel" 
+							fromLibrary="LightingLibrary" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
