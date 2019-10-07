@@ -6,7 +6,7 @@
 			<scene name="Simple Sphere" param="UNITIZE">
 				<geometry name="sphere"
 					type="SPHERE"
-					SLICES=10 STACKS=10
+					SLICES=15 STACKS=15
 					material="sphere" /> 		<!-- Naming the material as "sphere" instead of leaving as default _LightGrey from NAU3D, just for map -->
 			</scene>
 		</scenes>
